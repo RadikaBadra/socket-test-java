@@ -20,23 +20,15 @@ public static void main(String[] args) {
         System.out.println("Server pada port = "+
         s.getLocalAddress().getHostAddress() + " : " + s.getLocalPort());
         System.out.println("Client pada port = "+
-        s.getInetAddress().getHostAddress() + " : " + s.getPort());
-        
-//        BufferedReader op = new BufferedReader(new InputStreamReader(s.getInputStream()));
-//        System.out.println("Menunggu pesan...");
-//        String output = "";
-//        while ((output=op.readLine())!=null) { System.out.println(output);
-//        }
-   
+        s.getInetAddress().getHostAddress() + " : " + s.getPort()); 
+        BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+        System.out.println("Menunggu pesan...");
+        String greetings = "";
+        while ((greetings=br.readLine())!=null) { System.out.println(greetings);
+        }
         PrintWriter pw = new PrintWriter(s.getOutputStream(), true);
-        BufferedReader ip = new BufferedReader(new InputStreamReader(System.in));
-        String input = "";
-
-        while(!(input=ip.readLine()).equals("")) { pw.println(input);
-        }     
         System.out.println("Selesai");
-//        op.close();
-        ip.close();
+        br.close();
         pw.close();
         s.close(); ss.close();
     }
